@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <h2>Add New Product</h2>
+    <input type="text" id="input" placeholder="New add Product">
+    <button  onclick="addProduct()"><i class="fa-solid fa-dragon"></i></button>
+    <h3>display all products</h3>
+    <table  id="table">
+        <!-- <tr>
+            <td>
+                tên sản phẩm
+            </td>
+            <td>
+                edit
+            </td>
+            <td>    
+                delete
+            </td>
+        </tr> -->
+    </table >
+    <script>
+      
+        function cartProduct (){
+            let listProduct = JSON.parse(localStorage.getItem("listProduct")) ;
+            let result = "" ;
+            for(let i = 0 ; i < listProduct.length ; i ++){
+               result+=
+               `
+        <tr>
+            <td>
+                ${listProduct[i]}
+            </td>
+            <td> <button id="icon_y" onclick="editProduct(${i})"><i class="fa-solid fa-hippo"></i></button> </td>
+            <td > <button id="icon_x" onclick="deleteProduct(${i})" > <i class="fa-solid fa-trash"></i>  </button> </td>
+        </tr>
+               `
+            }
+            document.getElementById("table").innerHTML=result;
+        }
+        cartProduct()
+        function addProduct(){
+            let listProduct = JSON.parse(localStorage.getItem("listProduct"));
+            let valueInput = document.getElementById("input").value;
+           if(listProduct== null){
+            listProduct = []
+            listProduct.push(valueInput);
+            localStorage.setItem("listProduct",JSON.stringify(listProduct));
+           }else{
+            listProduct.push(valueInput)
+            localStorage.setItem("listProduct",JSON.stringify(listProduct))
+           }
+           localStorage.setItem("listProduct",JSON.stringify(listProduct));
+           cartProduct();
+        }
+        //phần edit 
+        function editProduct(id){
+            let listProduct = JSON.parse(localStorage.getItem("listProduct")) ;
+            document.getElementById("input").value = listProduct[id];
+            let changeProduct= prompt('nhập sản phẩm cần uppdate');
+            listProduct.splice(id,1,changeProduct);
+            localStorage.setItem("listProduct",JSON.stringify(listProduct));
+            cartProduct();
+            document.getElementById("input").value = " ";
+        }
+         //phần delete
+         function deleteProduct(id){
+            let listProduct = JSON.parse(localStorage.getItem("listProduct")) ;
+            listProduct.splice(id,1);
+            localStorage.setItem("listProduct",JSON.stringify(listProduct));
+            cartProduct();
+         }
+        
+         localStorage.setItem()
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+         // cách lưu local storage
+         // để lưu dùng Set :tên để lưu (key) và giá trị cần lưu; json.stringify(key)
+         //vidu : localStorage.set(key,value)
+         // lấy về dùng Get : lấy theo Key json.parse()
+         //vidu : let Ketqua = localStorage.getItem(key);
+
+
+
+        // hàm tự định nghĩa 
+        /*
+        1. declaration function : hàm không được thực thi khi khai báo .
+        vidu :
+        function tinh tong(){
+            console.log("chào mọi người!")
+        } 
+        tinhtong()
+
+        2 . exprssstion function : gọi sau khi khai báo 
+
+
+        vidu : 
+        let result = function tinhtong(){
+            console.log("chào mọi người!")
+        }
+        result()
+
+        3. arrow function : hàm mũi tên . gọi sau khi khai báo
+        vidu :
+        let result=()=>{
+            console.log("hello mọi người!");
+        }
+        result()
+
+
+        4 IIFE Immediately Invoked Function Expression;
+        vidu :
+        (function(){
+            console.log("xin chào mọi người!")
+        })
+         */
+        /* 
+        tham số  (parameters)
+        đối số (argument)
+        vidu ;
+        function tinhtong(a,b,c){    a,b,c được gọi là tham số của hàm 
+
+        }
+        tinhtong(5,6) 5,6 được gọi là đối số của hàm
+         */
+
+        //đối tưởng argument ;
+        /*
+        vidu :
+        function arguments(){
+            for (Const value of arguments){
+                console.log(value)
+            }
+        }
+        arguments(1,2,3,4,5,6,7,8)
+         */
+        
+
+ 
+    </script>
+</body>
+</html>

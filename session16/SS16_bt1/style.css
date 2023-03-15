@@ -1,0 +1,28 @@
+button{
+    background-color: greenyellow;
+    width: 80px;
+    height: 40px;
+    color: black ;
+    font-size: 25px;
+}
+#input{
+   width: 300px;
+   height: 40px;
+}
+td{
+    background-color: rgba(1, 238, 242, 0.455);
+    width: 100px;
+    height: 40px;  
+    text-align: center; 
+}
+#input1{
+    background-color: hotpink;
+    color: aliceblue;
+} 
+#icon_x{
+    background-color: red;
+    font-size: 25px;
+}
+#icon_y{
+   font-size: 25px;
+}
